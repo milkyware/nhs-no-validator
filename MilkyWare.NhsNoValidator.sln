@@ -7,18 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{EA
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		.gitignore = .gitignore
+		Dockerfile = Dockerfile
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{257004D3-7A00-484D-9CD4-56274CBC159F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilkyWare.NhsNoValidator", "src\MilkyWare.NhsNoValidator\MilkyWare.NhsNoValidator.csproj", "{DA13BC55-F431-4AC0-AFFD-6BEBD3EC64ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilkyWare.NhsNoValidator", "src\MilkyWare.NhsNoValidator\MilkyWare.NhsNoValidator.csproj", "{DA13BC55-F431-4AC0-AFFD-6BEBD3EC64ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilkyWare.NhsNoValidator.Core", "src\MilkyWare.NhsNoValidator.Core\MilkyWare.NhsNoValidator.Core.csproj", "{7AB0D75F-01DF-4487-BE42-BD050B45A7E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilkyWare.NhsNoValidator.Core", "src\MilkyWare.NhsNoValidator.Core\MilkyWare.NhsNoValidator.Core.csproj", "{7AB0D75F-01DF-4487-BE42-BD050B45A7E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{58D62137-D901-4DE3-8BB8-D259E50462D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilkyWare.NhsNoValidator.Core.Tests", "tests\MilkyWare.NhsNoValidator.Core.Tests\MilkyWare.NhsNoValidator.Core.Tests.csproj", "{BC8B476D-AADC-4474-B608-0B6A3F81009C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilkyWare.NhsNoValidator.Core.Tests", "tests\MilkyWare.NhsNoValidator.Core.Tests\MilkyWare.NhsNoValidator.Core.Tests.csproj", "{BC8B476D-AADC-4474-B608-0B6A3F81009C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
