@@ -22,13 +22,13 @@ FROM restore AS publish
 COPY ./src/ ./src/
 RUN dotnet publish ./src/MilkyWare.NhsNoValidator -c Release -o /app/publish
 
-FROM publish AS vulnscan
-COPY --from=aquasec/trivy:latest /usr/local/bin/trivy /usr/local/bin/trivy
-
-FROM base as final
+FROM base AS scan
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=aquasec/trivy:latest /usr/local/bin/trivy /usr/local/bin/trivy
 RUN trivy filesystem --exit-code 1 --no-progress /
-RUN rm /usr/local/bin/trivy
+
+FROM base as final
+WORKDIR /app
+COPY --from=scan /app .
 ENTRYPOINT ["dotnet", "MilkyWare.NhsNoValidator.dll"]

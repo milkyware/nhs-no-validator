@@ -43,5 +43,5 @@ jobs:
         with:
           builder: ${{steps.docker-buildx.outputs.name}}
           context: .
-          platforms: linux/arm64,linux/arm/v7,linux/amd64
+          platforms: linux/arm64,linux/amd64
           target: test
