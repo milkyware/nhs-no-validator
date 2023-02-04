@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.source="https://github.com/milkyware/nhs-no-valid
 LABEL org.opencontainers.image.title="NHS No Validator API"
 LABEL org.opencontainers.image.documentation="https://github.com/milkyware/nhs-no-validator/blob/main/README.md"
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim-amd64 AS restore
+FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim AS restore
 WORKDIR /sln
 COPY *.sln .
 COPY ./src/MilkyWare.NhsNoValidator/*.csproj ./src/MilkyWare.NhsNoValidator/
