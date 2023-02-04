@@ -11,12 +11,6 @@ on:
   
   workflow_dispatch:
 
-env:
-  IMAGE_NAME: "nhs-no-validator"
-  DOCKERHUB_REGISTRY: "docker.io"
-  GITHUB_REGISTRY: "ghcr.io"
-  QUAY_REGISTRY: "quay.io"
-
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
