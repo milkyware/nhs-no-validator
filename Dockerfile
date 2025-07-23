@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine as base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine as base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.source="https://github.com/milkyware/nhs-no-valid
 LABEL org.opencontainers.image.title="NHS No Validator API"
 LABEL org.opencontainers.image.documentation="https://github.com/milkyware/nhs-no-validator/blob/main/README.md"
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim AS restore
+FROM mcr.microsoft.com/dotnet/sdk:8.0-bullseye-slim AS restore
 WORKDIR /sln
 COPY *.sln .
 COPY ./src/MilkyWare.NhsNoValidator/*.csproj ./src/MilkyWare.NhsNoValidator/
