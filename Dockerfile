@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.source="https://github.com/milkyware/nhs-no-valid
 LABEL org.opencontainers.image.title="NHS No Validator API"
 LABEL org.opencontainers.image.documentation="https://github.com/milkyware/nhs-no-validator/blob/main/README.md"
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS restore
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS restore
 ARG CONFIGURATION TARGETARCH
 WORKDIR /work
 COPY *.sln .
