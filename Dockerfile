@@ -15,7 +15,7 @@ COPY *.sln .
 COPY ./src/MilkyWare.NhsNoValidator/*.csproj ./src/MilkyWare.NhsNoValidator/
 COPY ./src/MilkyWare.NhsNoValidator.Core/*.csproj ./src/MilkyWare.NhsNoValidator.Core/
 COPY ./tests/MilkyWare.NhsNoValidator.Core.Tests/*.csproj ./tests/MilkyWare.NhsNoValidator.Core.Tests/
-RUN dotnet restore
+RUN dotnet restore -a $TARGETARCH
 
 FROM restore AS test
 ARG CONFIGURATION TARGETARCH
