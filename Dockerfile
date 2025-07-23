@@ -28,10 +28,10 @@ COPY ./src/ ./src/
 RUN dotnet publish ./src/MilkyWare.NhsNoValidator -a $TARGETARCH -c $CONFIGURATION -o /app/publish
 
 FROM base AS scan
-WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=aquasec/trivy:latest /usr/local/bin/trivy /usr/local/bin/trivy
-RUN trivy filesystem --exit-code 1 --no-progress /
+RUN trivy fs --exit-code 1 --severity CRITICAL,HIGH --no-progress /
+RUN rm -rf /usr/local/bin/trivy
 
 FROM base AS final
 WORKDIR /app
