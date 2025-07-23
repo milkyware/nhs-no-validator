@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine as base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
@@ -14,7 +14,7 @@ COPY ./src/MilkyWare.NhsNoValidator.Core/*.csproj ./src/MilkyWare.NhsNoValidator
 COPY ./tests/MilkyWare.NhsNoValidator.Core.Tests/*.csproj ./tests/MilkyWare.NhsNoValidator.Core.Tests/
 RUN dotnet restore
 
-FROM restore as test
+FROM restore AS test
 COPY . .
 RUN dotnet test -c Debug
 
@@ -28,7 +28,7 @@ COPY --from=publish /app/publish .
 COPY --from=aquasec/trivy:latest /usr/local/bin/trivy /usr/local/bin/trivy
 RUN trivy filesystem --exit-code 1 --no-progress /
 
-FROM base as final
+FROM base AS final
 WORKDIR /app
 COPY --from=scan /app .
 ENTRYPOINT ["dotnet", "MilkyWare.NhsNoValidator.dll"]
