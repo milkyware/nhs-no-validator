@@ -1,0 +1,71 @@
+name: CI
+
+on: 
+  pull_request:
+    paths:
+      - "src/**"
+      - "tests/**"
+  workflow_dispatch: 
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    env:
+      RESULTS_DIR: .tmp/results
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print Environment Variables
+        shell: pwsh
+        run: |
+          Get-ChildItem Env: | ForEach-Object {Write-Host "$($_.Name)=$($_.Value)"}
+
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+
+      - name: Dotnet Version
+        run: dotnet --version
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build
+
+      - name: Test
+        run: dotnet test --logger trx --collect "XPlat Code Coverage" --results-directory ${{env.RESULTS_DIR}}
+
+      - name: Upload Results
+        uses: actions/upload-artifact@v4
+        if: ${{!cancelled()}}
+        with:
+          name: test-results
+          path: ${{env.RESULTS_DIR}}
+
+      - name: Publish Results
+        uses: dorny/test-reporter@v2
+        if: ${{!cancelled()}}
+        with:
+          name: test-results
+          path: ${{env.RESULTS_DIR}}/*.trx
+          reporter: dotnet-trx
+      
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: ${{env.RESULTS_DIR}}/**/coverage.cobertura.xml
+          badge: true
+          format: markdown
+          indicators: true
+          output: both
