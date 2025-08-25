@@ -20,7 +20,7 @@ jobs:
       RESULTS_DIR: .tmp/results
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Print Environment Variables
         shell: pwsh
